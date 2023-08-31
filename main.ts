@@ -5,36 +5,267 @@ namespace SpriteKind {
     export const Decoy = SpriteKind.create()
     export const Boom = SpriteKind.create()
     export const flashbang = SpriteKind.create()
+    export const Boss = SpriteKind.create()
+    export const Zombie1 = SpriteKind.create()
+    export const Zombie2 = SpriteKind.create()
+    export const Zombie3 = SpriteKind.create()
+    export const Zombie4 = SpriteKind.create()
+    export const Zombie5 = SpriteKind.create()
 }
+statusbars.onStatusReached(StatusBarKind.Health, statusbars.StatusComparison.LTE, statusbars.ComparisonType.Fixed, 50, function (status) {
+    Final_Boss.follow(Gooby_Boi, 40)
+    Final_Boss.startEffect(effects.trail)
+})
+info.onScore(randint(40, 50), function () {
+    game.setDialogFrame(img`
+        ..................................................................
+        ............fff........fff.............fff..............ffff......
+        ...........fddbf......fbdbf...........fbdbf............fbddf......
+        ...........fddbbf.....fdddffff........fdddffff...fff..ffddbff.....
+        ...........fddddffffffbdddbddbffffffffbdddbddbffffddffddddddf.....
+        ...fff....fdddddfddddddddbbddddddddddddddbbddddddfdddddbccddf.....
+        .fffddf..fddffffddddddddddbbddddddddddddddbbdddddffbddbbddff......
+        .fdbddfffddfffdddfffffbdddbddbffffffffbdddbddbfffefddccbddf.......
+        .fdddcddddffeffffeeeeefbdbfddfeeeeeeeefbdbfddfeeeefffcddddf.......
+        .fbddcddddfeeeeeeeeeeeefffffffeeeeeeeeefffffffeeeeeeefdddddf......
+        ..ffdbbbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffffddf.....
+        ...fddbcddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddfff..
+        ....fddccffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddddf.
+        ....fdddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddddf.
+        ...fddbdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbbf.
+        ...fddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbf..
+        ...ffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddfff...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+        ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+        .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+        .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+        .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+        ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+        ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+        .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+        .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+        .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+        ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fffddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffff...
+        ..fbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddf...
+        .fbbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdbddf...
+        .fddddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddf....
+        .fddddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffccddf....
+        ..fffddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddcbddf...
+        .....fddfffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbbbdff..
+        ......fdddddfeeeeeeefffffffeeeeeeeeefffffffeeeeeeeeeeeefddddcddbf.
+        .......fddddcfffeeeefddfbdbfeeeeeeeefddfbdbfeeeeeffffeffddddcdddf.
+        .......fddbccddfefffbddbdddbffffffffbddbdddbfffffdddfffddfffddbdf.
+        ......ffddbbddbffdddddbbddddddddddddddbbddddddddddffffddf..fddfff.
+        .....fddccbdddddfddddddbbddddddddddddddbbddddddddfdddddf....fff...
+        .....fddddddffddffffbddbdddbffffffffbddbdddbffffffddddf...........
+        .....ffbddff..fff...ffffdddf........ffffdddf.....fbbddf...........
+        ......fddbf............fbdbf...........fbdbf......fbddf...........
+        ......ffff..............fff.............fff........fff............
+        ..................................................................
+        `)
+    game.showLongText("A Bomb Is Hidden Somewhere!", DialogLayout.Center)
+    for (let index = 0; index < 3; index++) {
+        Nuke = sprites.create(img`
+            . . . . f f f f f f f . . . . . 
+            . . f f f f f f f f f f f . . . 
+            . f 5 f f f f f f f f f 5 f . . 
+            . f 5 5 f f f f f f f 5 5 f . . 
+            f 5 5 5 5 f f f f f 5 5 5 5 f . 
+            f 5 5 5 5 5 f f f 5 5 5 5 5 f . 
+            f 5 5 5 5 5 f f f 5 5 5 5 5 f . 
+            f f f f f f f 5 f f f f f f f . 
+            f f f f f f f f f f f f f f f . 
+            f f f f f f f 5 f f f f f f f . 
+            f f f f f f 5 5 5 f f f f f f . 
+            . f f f f 5 5 5 5 5 f f f f . . 
+            . f f f f 5 5 5 5 5 f f f f . . 
+            . . f f f f 5 5 5 f f f f . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Boom)
+        Nuke.setPosition(randint(-180, 180), randint(-180, 180))
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Boom, function (sprite, otherSprite) {
-    sprites.destroy(Nuke)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Boom)
+    sprites.destroy(Nuke, effects.warmRadial, 500)
     music.play(music.melodyPlayable(music.bigCrash), music.PlaybackMode.UntilDone)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy, effects.disintegrate, 5000)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Zombie1, effects.disintegrate, 5000)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Zombie2, effects.disintegrate, 5000)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Zombie3, effects.disintegrate, 5000)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Zombie4, effects.disintegrate, 5000)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Zombie5, effects.disintegrate, 5000)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    game.showLongText("Tips: If a zombie is glitched and wont take damage, use the bombs to clear them out and fix them. If you need health, but zombies are surrounding the pack, try to strafe upward/downward to the med-pack, because blue zombies and some reds move faster when you go straight up or down, and so you get them a little tricked. Zombies deal damage over time, not instantly so you can use this time to find health before you lives run out.", DialogLayout.Full)
+    game.setDialogTextColor(3)
+    game.showLongText("Tips: If A bomb has spawned, try to use as soon as you can, because one bomb clears out EVERYTHING, including that power-up. If you need health, but zombies are surrounding the pack, try to strafe upward/downward to the med-pack, because blue zombies and some reds move faster when you go straight up or down, and so you get them a little tricked. Zombies deal damage over time, not instantly so you can use this time to find health before your lives run out.", DialogLayout.Full)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie1, function (sprite, otherSprite) {
+    Gooby_Boi.startEffect(effects.trail, 500)
+    pause(1000)
+    music.play(music.melodyPlayable(music.thump), music.PlaybackMode.UntilDone)
+    info.changeLifeBy(-1)
+})
+sprites.onDestroyed(SpriteKind.Health, function (sprite) {
+    music.play(music.createSoundEffect(WaveShape.Square, 187, 3644, 223, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
+})
+sprites.onCreated(SpriteKind.Zombie5, function (sprite) {
+    music.play(music.createSoundEffect(WaveShape.Noise, 436, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+})
+info.onScore(randint(50, 60), function () {
+    game.setDialogFrame(img`
+        ..................................................................
+        ............fff........fff.............fff..............ffff......
+        ...........fddbf......fbdbf...........fbdbf............fbddf......
+        ...........fddbbf.....fdddffff........fdddffff...fff..ffddbff.....
+        ...........fddddffffffbdddbddbffffffffbdddbddbffffddffddddddf.....
+        ...fff....fdddddfddddddddbbddddddddddddddbbddddddfdddddbccddf.....
+        .fffddf..fddffffddddddddddbbddddddddddddddbbdddddffbddbbddff......
+        .fdbddfffddfffdddfffffbdddbddbffffffffbdddbddbfffefddccbddf.......
+        .fdddcddddffeffffeeeeefbdbfddfeeeeeeeefbdbfddfeeeefffcddddf.......
+        .fbddcddddfeeeeeeeeeeeefffffffeeeeeeeeefffffffeeeeeeefdddddf......
+        ..ffdbbbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffffddf.....
+        ...fddbcddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddfff..
+        ....fddccffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddddf.
+        ....fdddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddddf.
+        ...fddbdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbbf.
+        ...fddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbf..
+        ...ffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddfff...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+        ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+        .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+        .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+        .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+        ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+        ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+        .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+        .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+        .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+        ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fffddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffff...
+        ..fbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddf...
+        .fbbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdbddf...
+        .fddddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddf....
+        .fddddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffccddf....
+        ..fffddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddcbddf...
+        .....fddfffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbbbdff..
+        ......fdddddfeeeeeeefffffffeeeeeeeeefffffffeeeeeeeeeeeefddddcddbf.
+        .......fddddcfffeeeefddfbdbfeeeeeeeefddfbdbfeeeeeffffeffddddcdddf.
+        .......fddbccddfefffbddbdddbffffffffbddbdddbfffffdddfffddfffddbdf.
+        ......ffddbbddbffdddddbbddddddddddddddbbddddddddddffffddf..fddfff.
+        .....fddccbdddddfddddddbbddddddddddddddbbddddddddfdddddf....fff...
+        .....fddddddffddffffbddbdddbffffffffbddbdddbffffffddddf...........
+        .....ffbddff..fff...ffffdddf........ffffdddf.....fbbddf...........
+        ......fddbf............fbdbf...........fbdbf......fbddf...........
+        ......ffff..............fff.............fff........fff............
+        ..................................................................
+        `)
+    game.showLongText("A Bomb Is Hidden Somewhere!", DialogLayout.Center)
+    for (let index = 0; index < 3; index++) {
+        Nuke = sprites.create(img`
+            . . . . f f f f f f f . . . . . 
+            . . f f f f f f f f f f f . . . 
+            . f 5 f f f f f f f f f 5 f . . 
+            . f 5 5 f f f f f f f 5 5 f . . 
+            f 5 5 5 5 f f f f f 5 5 5 5 f . 
+            f 5 5 5 5 5 f f f 5 5 5 5 5 f . 
+            f 5 5 5 5 5 f f f 5 5 5 5 5 f . 
+            f f f f f f f 5 f f f f f f f . 
+            f f f f f f f f f f f f f f f . 
+            f f f f f f f 5 f f f f f f f . 
+            f f f f f f 5 5 5 f f f f f f . 
+            . f f f f 5 5 5 5 5 f f f f . . 
+            . f f f f 5 5 5 5 5 f f f f . . 
+            . . f f f f 5 5 5 f f f f . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Boom)
+        Nuke.setPosition(randint(-180, 180), randint(-180, 180))
+    }
+})
+sprites.onOverlap(SpriteKind.Boss, SpriteKind.Player, function (sprite, otherSprite) {
+    info.changeLifeBy(-3)
+    Final_Boss.follow(Gooby_Boi, 20)
+    statusbar.value += 30
+    music.play(music.createSoundEffect(WaveShape.Noise, 2574, 2361, 255, 0, 500, SoundExpressionEffect.Tremolo, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
+    pause(5000)
+    Final_Boss.follow(Gooby_Boi, 30)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     Bullet = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . 5 1 . . . . . . . 
-        . . . . . . . 4 5 . . . . . . . 
-        . . . . . . d d d d . . . . . . 
-        . . . . . . d d d d . . . . . . 
-        . . . . . . d d d d . . . . . . 
-        . . . . . . b d d d . . . . . . 
-        . . . . . . b b d d . . . . . . 
-        . . . . . . c b b b . . . . . . 
-        . . . . . c c b b c b . . . . . 
-        . . . . . c c c c c c . . . . . 
+        . . . . 5 1 . . . . 
+        . . . . 4 5 . . . . 
+        . . . d d d d . . . 
+        . . . d d d d . . . 
+        . . . d d d d . . . 
+        . . . b d d d . . . 
+        . . . b b d d . . . 
+        . . . c b b b . . . 
+        . . c c b b c b . . 
+        . . c c c c c c . . 
         `, SpriteKind.Projectile)
+    Bullet.setVelocity(Gooby_Boi.vx + 20, Gooby_Boi.vy + 30)
+    Bullet.setFlag(SpriteFlag.DestroyOnWall, true)
     Bullet.setPosition(Gooby_Boi.x, Gooby_Boi.y)
-    Bullet.setVelocity(Gooby_Boi.vx + 20, Gooby_Boi.vy + 20)
+    music.play(music.createSoundEffect(
+    WaveShape.Noise,
+    5000,
+    3323,
+    255,
+    255,
+    200,
+    SoundExpressionEffect.Vibrato,
+    InterpolationCurve.Curve
+    ), music.PlaybackMode.UntilDone)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, otherSprite) {
+    if (Bullet.overlapsWith(Final_Boss)) {
+        sprites.destroy(Bullet)
+        statusbar.value += -8.5
+    }
 })
 info.onScore(randint(10, 50), function () {
     game.setDialogFrame(img`
@@ -105,7 +336,7 @@ info.onScore(randint(10, 50), function () {
         ......ffff..............fff.............fff........fff............
         ..................................................................
         `)
-    game.showLongText("3 Bombs are hidden somewhere!", DialogLayout.Center)
+    game.showLongText("A Bomb Is Hidden Somewhere!", DialogLayout.Center)
     for (let index = 0; index < 3; index++) {
         Nuke = sprites.create(img`
             . . . . f f f f f f f . . . . . 
@@ -128,6 +359,17 @@ info.onScore(randint(10, 50), function () {
         Nuke.setPosition(randint(-180, 180), randint(-180, 180))
     }
 })
+sprites.onDestroyed(SpriteKind.Boss, function (sprite) {
+    music.stopAllSounds()
+    music.play(music.createSong(hex`0078000408020701001c000f05001202c102c201000405002800000064002800031400060200041e0000000400011e08000c00012410001400012218001c00012234003800011d03001c0001dc00690000045e01000400000000000000000000056400010400030c0034003800012538003c00012004001c00100500640000041e000004000000000000000000000000000a0400041e0000000400011b0c001000012714001800011b18001c00011b24002800011d05001c000f0a006400f4010a0000040000000000000000000000000000000002250014001800012924002800012728002c00011e2c00300002202730003400012a3c004000011d06001c00010a006400f40164000004000000000000000000000000000000000213001c002000021e2420002400012c24002800012208001c000e050046006603320000040a002d0000006400140001320002010002180008000c00011b0c001000011b14001800011e1c002000012709010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c8002c00040005000201060800090001020c000d0002040914001500010720002100010838003900010a3c003d00010a`), music.PlaybackMode.LoopingInBackground)
+    game.setGameOverEffect(true, effects.confetti)
+    game.setGameOverMessage(true, "You Have Survived!")
+    game.gameOver(true)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Zombie4, function (sprite, otherSprite) {
+    sprites.destroy(sprite)
+    sprites.destroy(otherSprite)
+})
 info.onCountdownEnd(function () {
     info.startCountdown(7.5)
     Zombie4 = sprites.create(img`
@@ -147,7 +389,7 @@ info.onCountdownEnd(function () {
         . . . . 8 8 8 8 8 8 8 8 6 . . . 
         . . . . . 8 8 8 6 6 6 6 . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Enemy)
+        `, SpriteKind.Zombie4)
     Zombie4.follow(Gooby_Boi, 35)
     Zombie4.setPosition(randint(-180, 180), randint(-180, 180))
     Zombie5 = sprites.create(img`
@@ -167,7 +409,7 @@ info.onCountdownEnd(function () {
         . . . . 2 2 2 2 2 2 2 2 4 . . . 
         . . . . . 2 2 2 4 4 4 4 . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Enemy)
+        `, SpriteKind.Zombie5)
     Zombie5.setPosition(randint(-180, 180), randint(-180, 180))
     Zombie5.follow(Gooby_Boi, 25)
     Zombie1 = sprites.create(img`
@@ -187,7 +429,7 @@ info.onCountdownEnd(function () {
         . . . . 2 2 2 2 2 2 2 2 4 . . . 
         . . . . . 2 2 2 4 4 4 4 . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Enemy)
+        `, SpriteKind.Zombie1)
     Zombie1.setPosition(randint(-180, 180), randint(-180, 180))
     Zombie1.follow(Gooby_Boi, 20)
     Zombie2 = sprites.create(img`
@@ -207,9 +449,114 @@ info.onCountdownEnd(function () {
         . . . . 2 2 2 2 2 2 2 2 4 . . . 
         . . . . . 2 2 2 4 4 4 4 . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Enemy)
+        `, SpriteKind.Zombie2)
     Zombie2.setPosition(randint(-180, 180), randint(-180, 180))
     Zombie2.follow(Gooby_Boi, 25)
+})
+info.onScore(randint(30, 40), function () {
+    game.setDialogFrame(img`
+        ..................................................................
+        ............fff........fff.............fff..............ffff......
+        ...........fddbf......fbdbf...........fbdbf............fbddf......
+        ...........fddbbf.....fdddffff........fdddffff...fff..ffddbff.....
+        ...........fddddffffffbdddbddbffffffffbdddbddbffffddffddddddf.....
+        ...fff....fdddddfddddddddbbddddddddddddddbbddddddfdddddbccddf.....
+        .fffddf..fddffffddddddddddbbddddddddddddddbbdddddffbddbbddff......
+        .fdbddfffddfffdddfffffbdddbddbffffffffbdddbddbfffefddccbddf.......
+        .fdddcddddffeffffeeeeefbdbfddfeeeeeeeefbdbfddfeeeefffcddddf.......
+        .fbddcddddfeeeeeeeeeeeefffffffeeeeeeeeefffffffeeeeeeefdddddf......
+        ..ffdbbbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffffddf.....
+        ...fddbcddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddfff..
+        ....fddccffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddddf.
+        ....fdddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddddf.
+        ...fddbdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbbf.
+        ...fddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbf..
+        ...ffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddfff...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+        ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+        .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+        .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+        .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+        ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+        ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+        .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+        .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+        .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+        ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fffddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffff...
+        ..fbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddf...
+        .fbbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdbddf...
+        .fddddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddf....
+        .fddddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffccddf....
+        ..fffddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddcbddf...
+        .....fddfffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbbbdff..
+        ......fdddddfeeeeeeefffffffeeeeeeeeefffffffeeeeeeeeeeeefddddcddbf.
+        .......fddddcfffeeeefddfbdbfeeeeeeeefddfbdbfeeeeeffffeffddddcdddf.
+        .......fddbccddfefffbddbdddbffffffffbddbdddbfffffdddfffddfffddbdf.
+        ......ffddbbddbffdddddbbddddddddddddddbbddddddddddffffddf..fddfff.
+        .....fddccbdddddfddddddbbddddddddddddddbbddddddddfdddddf....fff...
+        .....fddddddffddffffbddbdddbffffffffbddbdddbffffffddddf...........
+        .....ffbddff..fff...ffffdddf........ffffdddf.....fbbddf...........
+        ......fddbf............fbdbf...........fbdbf......fbddf...........
+        ......ffff..............fff.............fff........fff............
+        ..................................................................
+        `)
+    game.showLongText("A Bomb Is Hidden Somewhere!", DialogLayout.Center)
+    for (let index = 0; index < 3; index++) {
+        Nuke = sprites.create(img`
+            . . . . f f f f f f f . . . . . 
+            . . f f f f f f f f f f f . . . 
+            . f 5 f f f f f f f f f 5 f . . 
+            . f 5 5 f f f f f f f 5 5 f . . 
+            f 5 5 5 5 f f f f f 5 5 5 5 f . 
+            f 5 5 5 5 5 f f f 5 5 5 5 5 f . 
+            f 5 5 5 5 5 f f f 5 5 5 5 5 f . 
+            f f f f f f f 5 f f f f f f f . 
+            f f f f f f f f f f f f f f f . 
+            f f f f f f f 5 f f f f f f f . 
+            f f f f f f 5 5 5 f f f f f f . 
+            . f f f f 5 5 5 5 5 f f f f . . 
+            . f f f f 5 5 5 5 5 f f f f . . 
+            . . f f f f 5 5 5 f f f f . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Boom)
+        Nuke.setPosition(randint(-180, 180), randint(-180, 180))
+    }
+})
+sprites.onCreated(SpriteKind.Zombie2, function (sprite) {
+    music.play(music.createSoundEffect(WaveShape.Noise, 436, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Zombie3, function (sprite, otherSprite) {
+    sprites.destroy(sprite)
+    sprites.destroy(otherSprite)
+})
+statusbars.onZero(StatusBarKind.Health, function (status) {
+    sprites.destroy(Final_Boss, effects.disintegrate, 5000)
+})
+sprites.onDestroyed(SpriteKind.Zombie1, function (sprite) {
+    info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Health, function (sprite, otherSprite) {
     sprites.destroy(MedPack)
@@ -238,6 +585,25 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Health, function (sprite, otherS
     info.changeLifeBy(1)
     Gooby_Boi.startEffect(effects.hearts, 1000)
 })
+sprites.onCreated(SpriteKind.Zombie1, function (sprite) {
+    music.play(music.createSoundEffect(WaveShape.Noise, 436, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie2, function (sprite, otherSprite) {
+    Gooby_Boi.startEffect(effects.trail, 500)
+    pause(1000)
+    music.play(music.melodyPlayable(music.thump), music.PlaybackMode.UntilDone)
+    info.changeLifeBy(-1)
+})
+sprites.onDestroyed(SpriteKind.Zombie4, function (sprite) {
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Zombie2, function (sprite, otherSprite) {
+    sprites.destroy(sprite)
+    sprites.destroy(otherSprite)
+})
+sprites.onCreated(SpriteKind.Zombie4, function (sprite) {
+    music.play(music.createSoundEffect(WaveShape.Noise, 436, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+})
 info.onLifeZero(function () {
     music.play(music.melodyPlayable(music.zapped), music.PlaybackMode.UntilDone)
     Gooby_Boi.setImage(img`
@@ -258,53 +624,214 @@ info.onLifeZero(function () {
         . . . . . 2 2 2 4 4 4 4 . . . . 
         . . . . . . . . . . . . . . . . 
         `)
+    music.stopAllSounds()
     pause(1000)
+    music.play(music.createSong(hex`0078000408020403001c0001dc00690000045e0100040000000000000000000005640001040003420000000400011d08000c0001240c001000012010001400011e14001800012018001c0001201c002000012424002800011d2c003000011d34003800012038003c00012405001c000f0a006400f4010a0000040000000000000000000000000000000002130008000c00011b18001c0001193c004000021d2507001c00020a006400f401640000040000000000000000000000000000000003060030003400011b09010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c800240000000100010610001100010618001900010320002100010424002500010428002900010a`), music.PlaybackMode.LoopingInBackground)
     game.setGameOverPlayable(false, music.melodyPlayable(music.buzzer), false)
     game.setGameOverMessage(false, "You were Infected")
     game.gameOver(false)
 })
-sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
+sprites.onDestroyed(SpriteKind.Zombie2, function (sprite) {
     info.changeScoreBy(1)
 })
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (Bullet.overlapsWith(Zombie1)) {
-        sprites.destroy(Zombie1)
-        sprites.destroy(Bullet)
-    }
-    if (Bullet.overlapsWith(Zombie2)) {
-        sprites.destroy(Zombie2)
-        sprites.destroy(Bullet)
-    }
-    if (Bullet.overlapsWith(Zombie3)) {
-        sprites.destroy(Zombie3)
-        sprites.destroy(Bullet)
-    }
-    if (Bullet.overlapsWith(Zombie4)) {
-        sprites.destroy(Zombie4)
-        sprites.destroy(Bullet)
-    }
-    if (Bullet.overlapsWith(Zombie5)) {
-        sprites.destroy(Zombie5)
-        sprites.destroy(Bullet)
-    }
-    info.changeScoreBy(1)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie4, function (sprite, otherSprite) {
     Gooby_Boi.startEffect(effects.trail, 500)
     pause(1000)
     music.play(music.melodyPlayable(music.thump), music.PlaybackMode.UntilDone)
     info.changeLifeBy(-1)
 })
+sprites.onDestroyed(SpriteKind.Zombie5, function (sprite) {
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie3, function (sprite, otherSprite) {
+    Gooby_Boi.startEffect(effects.trail, 500)
+    pause(1000)
+    music.play(music.melodyPlayable(music.thump), music.PlaybackMode.UntilDone)
+    info.changeLifeBy(-1)
+})
+sprites.onDestroyed(SpriteKind.Zombie3, function (sprite) {
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Zombie5, function (sprite, otherSprite) {
+    Gooby_Boi.startEffect(effects.trail, 500)
+    pause(1000)
+    music.play(music.melodyPlayable(music.thump), music.PlaybackMode.UntilDone)
+    info.changeLifeBy(-1)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Zombie1, function (sprite, otherSprite) {
+    sprites.destroy(sprite)
+    sprites.destroy(otherSprite)
+})
+info.onScore(75, function () {
+    music.stopAllSounds()
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    game.splash("Your test", "Has Begun...")
+    music.play(music.createSoundEffect(
+    WaveShape.Sawtooth,
+    1,
+    650,
+    255,
+    255,
+    500,
+    SoundExpressionEffect.Vibrato,
+    InterpolationCurve.Curve
+    ), music.PlaybackMode.UntilDone)
+    music.play(music.createSong(hex`002c010408020403001c0001dc00690000045e01000400000000000000000000056400010400032a0008000c00011b10001400011b18001c00012020002400012224002800011b28002c00011b38003c00012904001c00100500640000041e000004000000000000000000000000000a0400043b0000000400021e2708000c00011e10001400011d14001800021d221c00200002192020002400011d28002c00021d1e30003400011b38003c0002191e05001c000f0a006400f4010a0000040000000000000000000000000000000002120000000400011928002c00012034003800012209010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c80018000c000d0001061c001d0001052400250001053c003d00010a`), music.PlaybackMode.LoopingInBackground)
+    Final_Boss = sprites.create(img`
+        ..........bbb333333bb...........
+        ........bb333bbbbb3bbbb.........
+        ......bbb3333bbbbbbbbbbbb.......
+        .....bbbbb33bbbbbbbbbbbbbb......
+        ....bbb3bbbbbbbbbbbbbbbbbbb.....
+        ...bbb33bfffffbbbbbfffffbbbb....
+        ..bbbb3bfffbfffbbbfbbffffbbbb...
+        ..bbbbbcffbffffbbbffffbffcbbb...
+        .bbbbbcffff3fbfbbbfbf3ffffcbbb..
+        .bbbbcfcffffbbfcbcfbbffffcfcbb..
+        bbbbbfbcffbbfffcbcfffbbffccfbbb.
+        bbbbbbbcfffffffcbcfffffffcbbbbb.
+        bbbbbbbfcccccccbbbcccccccfbbbbb.
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.
+        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.
+        bbbbbbbbbbbbbbbcbcbbbbbbbbbbbbb.
+        bbbbbbbbbbbbbbccbccbbbbbbbbbbbb.
+        bbbbbbbbbbbbbbccbccbbbbbbbbbbbb.
+        bbbbbbbbbbbcbcfcbcfcbcbbbbbbbbb.
+        bbbbbbbbbbfcbcfcdcfcbcfbbbbbbbb.
+        bbbbbbbbbffcdcfcdcfcdcffbbbbbbb.
+        .bbbbbbbffffcfffcfffcffffbbbbb..
+        .cbbbbbfffffffffffffffffffbbbc..
+        .ccbbbfffffffffffffffffffffbc...
+        ..ccbffffffdffffffffffffffffc...
+        ...cffffffdcdfffffffdffffffc....
+        ....bffffdccbffdffddcdfffbc.....
+        .....cbbbcccbfdcfbccccbbbc......
+        ......ccccccccccbcccccccc.......
+        ........ccccccccccccccc.........
+        ..........ccccccccccc...........
+        ................................
+        `, SpriteKind.Boss)
+    Final_Boss.follow(Gooby_Boi, 30)
+    Final_Boss.setPosition(76, 57)
+    statusbar = statusbars.create(20, 4, StatusBarKind.Health)
+    statusbar.setColor(12, 13, 3)
+    statusbar.positionDirection(CollisionDirection.Bottom)
+    statusbar.max = 200
+    statusbar.value = 200
+    statusbar.attachToSprite(Final_Boss)
+    statusbar.setStatusBarFlag(StatusBarFlag.SmoothTransition, true)
+    statusbar.setPosition(Final_Boss.x, Final_Boss.y - 10)
+})
+sprites.onCreated(SpriteKind.Zombie3, function (sprite) {
+    music.play(music.createSoundEffect(WaveShape.Noise, 436, 0, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Zombie5, function (sprite, otherSprite) {
+    sprites.destroy(sprite)
+    sprites.destroy(otherSprite)
+})
+info.onScore(randint(60, 70), function () {
+    game.setDialogFrame(img`
+        ..................................................................
+        ............fff........fff.............fff..............ffff......
+        ...........fddbf......fbdbf...........fbdbf............fbddf......
+        ...........fddbbf.....fdddffff........fdddffff...fff..ffddbff.....
+        ...........fddddffffffbdddbddbffffffffbdddbddbffffddffddddddf.....
+        ...fff....fdddddfddddddddbbddddddddddddddbbddddddfdddddbccddf.....
+        .fffddf..fddffffddddddddddbbddddddddddddddbbdddddffbddbbddff......
+        .fdbddfffddfffdddfffffbdddbddbffffffffbdddbddbfffefddccbddf.......
+        .fdddcddddffeffffeeeeefbdbfddfeeeeeeeefbdbfddfeeeefffcddddf.......
+        .fbddcddddfeeeeeeeeeeeefffffffeeeeeeeeefffffffeeeeeeefdddddf......
+        ..ffdbbbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffffddf.....
+        ...fddbcddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddfff..
+        ....fddccffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddddf.
+        ....fdddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddddf.
+        ...fddbdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbbf.
+        ...fddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbf..
+        ...ffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddfff...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+        ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+        .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+        .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+        .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+        ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+        ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+        .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+        .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+        .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+        ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+        ...fffddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffff...
+        ..fbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddf...
+        .fbbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdbddf...
+        .fddddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddf....
+        .fddddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffccddf....
+        ..fffddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddcbddf...
+        .....fddfffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbbbdff..
+        ......fdddddfeeeeeeefffffffeeeeeeeeefffffffeeeeeeeeeeeefddddcddbf.
+        .......fddddcfffeeeefddfbdbfeeeeeeeefddfbdbfeeeeeffffeffddddcdddf.
+        .......fddbccddfefffbddbdddbffffffffbddbdddbfffffdddfffddfffddbdf.
+        ......ffddbbddbffdddddbbddddddddddddddbbddddddddddffffddf..fddfff.
+        .....fddccbdddddfddddddbbddddddddddddddbbddddddddfdddddf....fff...
+        .....fddddddffddffffbddbdddbffffffffbddbdddbffffffddddf...........
+        .....ffbddff..fff...ffffdddf........ffffdddf.....fbbddf...........
+        ......fddbf............fbdbf...........fbdbf......fbddf...........
+        ......ffff..............fff.............fff........fff............
+        ..................................................................
+        `)
+    game.showLongText("A Bomb Is Hidden Somewhere!", DialogLayout.Center)
+    for (let index = 0; index < 3; index++) {
+        Nuke = sprites.create(img`
+            . . . . f f f f f f f . . . . . 
+            . . f f f f f f f f f f f . . . 
+            . f 5 f f f f f f f f f 5 f . . 
+            . f 5 5 f f f f f f f 5 5 f . . 
+            f 5 5 5 5 f f f f f 5 5 5 5 f . 
+            f 5 5 5 5 5 f f f 5 5 5 5 5 f . 
+            f 5 5 5 5 5 f f f 5 5 5 5 5 f . 
+            f f f f f f f 5 f f f f f f f . 
+            f f f f f f f f f f f f f f f . 
+            f f f f f f f 5 f f f f f f f . 
+            f f f f f f 5 5 5 f f f f f f . 
+            . f f f f 5 5 5 5 5 f f f f . . 
+            . f f f f 5 5 5 5 5 f f f f . . 
+            . . f f f f 5 5 5 f f f f . . . 
+            . . . . f f f f f f f . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Boom)
+        Nuke.setPosition(randint(-180, 180), randint(-180, 180))
+    }
+})
 let Zombie5: Sprite = null
 let Zombie4: Sprite = null
 let Bullet: Sprite = null
+let statusbar: StatusBarSprite = null
 let Nuke: Sprite = null
+let Final_Boss: Sprite = null
 let MedPack: Sprite = null
-let Zombie3: Sprite = null
 let Zombie2: Sprite = null
 let Zombie1: Sprite = null
 let Gooby_Boi: Sprite = null
-game.setGameOverScoringType(game.ScoringType.HighScore)
+music.play(music.createSong(assets.song`Zombie Song`), music.PlaybackMode.LoopingInBackground)
 scene.setBackgroundImage(img`
     2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222fff
     2222222222222222222222222222222111111111111222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222fff
@@ -427,151 +954,14 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffff2222222222222ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff22222222ffffff22222ffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffff22222222222ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff22222222fffffffffffffffffffffffffffffffffffff
     `)
-game.splash("Zombie Survival", "Game by Liberator")
+game.splash("Zombie Survival")
+music.stopAllSounds()
+music.play(music.createSong(hex`0078000408020701001c000f05001202c102c201000405002800000064002800031400060200040c0010001400012224002800012504001c00100500640000041e000004000000000000000000000000000a040004370000000400012504000800011918001c00011d1c002000011d24002800012728002c00011b34003800011e38003c0001223c00400002192005001c000f0a006400f4010a0000040000000000000000000000000000000002060020002400012006001c00010a006400f40164000004000000000000000000000000000000000224001400180001221c002000012424002800011e28002c00012434003800012238003c00012707001c00020a006400f401640000040000000000000000000000000000000003130010001400011b2c003000012530003400021d2208001c000e050046006603320000040a002d000000640014000132000201000218000c001000012710001400012918001c0001252c003000011d09010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c80030000000010001010400050001020800090001040c000d0001042800290001042c002d0001043800390001093c003d000109`), music.PlaybackMode.LoopingInBackground)
 info.setScore(0)
 info.setLife(3)
-scene.setBackgroundImage(img`
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaabbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaabbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaabbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaabbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaabbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaabbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaabbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaa
-    aaaaaaaaaaaaabbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaa
-    aaaaaaaaaaaabbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaa
-    aaaaaaaaaabbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaa
-    aaaaaaaaabbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbaaaaaaaaaaa
-    aaaaaaaaabbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbaaaaaaaaaaa
-    aaaaaaaabbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbaaaaaaaaaaa
-    aaaaaaaabbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbaaaaaaaaaaa
-    aaaaaaabbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbaaaaaaaaaaa
-    aaaaabbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbaaaaaaaaaaaa
-    aaaabbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbaaaaaaaaaaaa
-    aaabbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbaaaaaaaaaaaa
-    bbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbaaaaaaaaaaaaa
-    bbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbaaaaaaaaaaaaa
-    bbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbaaaaaaaaa
-    bbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbaaaaaaaaa
-    bbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbaaaaaaaaa
-    bbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbaaaaaaaaa
-    bbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbaaaaaaaaa
-    bbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbccccccccccc
-    bbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaccccccccccccccccccccccbbbbbbbcccccccccccc
-    bbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    bbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    bbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaccccccccccbbbbbbbbbbbbbbbbbcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    bbbbbbbbbbbbbaacccccccccccccccccccccccccccccccccccccccccccbbbbbbbbcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    bbbbbbbbbbbbcccccccccccccccccccccccccccccccccccccccccccccccbbbbbbccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    `)
 tiles.setCurrentTilemap(tilemap`level1`)
 info.startCountdown(15)
-Gooby_Boi = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . 3 3 . . . . . . 
-    . . . . . . . 3 3 b 3 . . . . . 
-    . . . . . . 3 3 b b b 3 . . . . 
-    . . . . . . 3 b b b b b . . . . 
-    . . . . . . 3 f b b f b . . . . 
-    . . . . . . b b b b b b . . . . 
-    . . . . . . b f b b f b . . . . 
-    . . . . . . b b f f b b . . . . 
-    . . . . . . b b b b b c . . . . 
-    . . . . . . c b b b b c . . . . 
-    . . . . . . c b c b c c . . . . 
-    . . . . . . . c c c c . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
+Gooby_Boi = sprites.create(assets.image`Player`, SpriteKind.Player)
 controller.moveSprite(Gooby_Boi, 50, 30)
 Gooby_Boi.setStayInScreen(true)
 Zombie1 = sprites.create(img`
@@ -591,7 +981,7 @@ Zombie1 = sprites.create(img`
     . . . . 2 2 2 2 2 2 2 2 4 . . . 
     . . . . . 2 2 2 4 4 4 4 . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Enemy)
+    `, SpriteKind.Zombie1)
 Zombie1.setPosition(19, 13)
 Zombie1.follow(Gooby_Boi, 20)
 Zombie2 = sprites.create(img`
@@ -611,10 +1001,10 @@ Zombie2 = sprites.create(img`
     . . . . 2 2 2 2 2 2 2 2 4 . . . 
     . . . . . 2 2 2 4 4 4 4 . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Enemy)
+    `, SpriteKind.Zombie2)
 Zombie2.setPosition(131, 17)
 Zombie2.follow(Gooby_Boi, 25)
-Zombie3 = sprites.create(img`
+let Zombie3 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . 3 3 3 3 3 3 3 . . . . 
@@ -631,7 +1021,7 @@ Zombie3 = sprites.create(img`
     . . . . 2 2 2 2 2 2 2 2 4 . . . 
     . . . . . 2 2 2 4 4 4 4 . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Enemy)
+    `, SpriteKind.Zombie3)
 Zombie3.setPosition(80, 117)
 Zombie3.follow(Gooby_Boi, 27.5)
 scene.cameraFollowSprite(Gooby_Boi)
@@ -654,3 +1044,9 @@ MedPack = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Health)
 MedPack.setPosition(16, 51)
+game.setGameOverScoringType(game.ScoringType.HighScore)
+forever(function () {
+    if (info.score() >= 75) {
+        info.stopCountdown()
+    }
+})
